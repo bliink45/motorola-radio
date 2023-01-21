@@ -1,0 +1,263 @@
+body {
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    bottom: 300px;
+    right: 100px;
+}
+
+.radio {
+    max-width: 200px;
+    transform: scale(1.25);
+}
+
+.radio .image {
+    width: 200px;
+    filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 255));
+}
+
+.radio .screen {
+    position: absolute;
+    top: 328px;
+    left: 59px;
+    height: 63px;
+    width: 92px;
+    background-color: white;
+}
+
+.radio .screen .home .footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 16px;
+    width: 92px;
+    background-color: rgb(0, 0, 110);
+}
+
+.radio .screen .home .footer .actions {
+    color: white;
+    font-weight: bold;
+    font-size: 9px;
+}
+
+.radio .screen .content .home .status-bar {
+    position: absolute;
+    top: -8px;
+    left: 0px;
+}
+
+.radio .screen .content .home .channel-number {
+    position: absolute;
+    top: 17px;
+    left: 4px;
+    font-weight: 100;
+    font-size: 8px;
+}
+
+.radio .screen .content .home .channel-name {
+    position: absolute;
+    top: 28px;
+    left: 4px;
+    font-size: 10px;
+}
+
+.radio .screen .content .zones .header,
+.radio .screen .content .contacts .header {
+    font-size: 11px;
+    color: white;
+    background-color: rgb(41, 41, 217);
+    padding-left: 4px !important
+}
+
+.radio .screen .content .zones .row .zone,
+.radio .screen .content .contacts .row .contact {
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 2px;
+}
+
+.radio .screen .content .zones .row.selected,
+.radio .screen .content .contacts .row.selected {
+    color: white;
+    background-color: rgb(41, 41, 217);
+    border: 1px solid;
+}
+
+.radio .screen .content .zones .row .check-1,
+.radio .screen .content .contacts .row .type-1 {
+    bottom: 29px;
+}
+
+.radio .screen .content .zones .row .check-2,
+.radio .screen .content .contacts .row .type-2 {
+    bottom: 14px;
+}
+
+.radio .screen .content .zones .row .check-3,
+.radio .screen .content .contacts .row .type-3 {
+    bottom: -1px;
+}
+
+.radio .screen .content .zones .row .check,
+.radio .screen .content .contacts .row .type {
+    display: none;
+    position: absolute;
+    margin-right: 2px;
+}
+
+.radio .screen .content .contacts .row.selected .type img {
+    position: relative;
+    left: -1px;
+}
+
+.radio .screen .content .zones .row.enabled .check,
+.radio .screen .content .contacts .row .type {
+    display: flex;
+}
+
+.radio .screen .content .zones .row,
+.radio .screen .content .contacts .row {
+    align-items: center;
+}
+
+.radio .screen .content .zones .submit,
+.radio .screen .content .contacts .submit {
+    font-weight: 600;
+}
+
+.radio .screen .content .zones .submit .image,
+.radio .screen .content .contacts .submit .image {
+    position: absolute;
+    top: -1px;
+    left: -2px;
+    width: 95px;
+    height: 65px;
+}
+
+.radio .screen .content .zones .submit .zone-name,
+.radio .screen .content .contacts .submit .zone-name {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+}
+
+.radio .screen .content .zones .submit .selected-label,
+.radio .screen .content .contacts .submit .selected-label {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 9px;
+}
+
+
+.radio .screen .home .footer .separator {
+    position: absolute;
+    bottom: 1px;
+    left: 45px;
+    height: 14px;
+    width: 1px;
+    background-color: white;
+}
+
+.controller .volume {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    left: 43px;
+    bottom: 330px;
+    width: 32px;
+    height: 35px;
+}
+
+.controller .channel {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    left: 85px;
+    bottom: 335px;
+    width: 30px;
+    height: 50px;
+}
+
+.controller .keyboard {
+    position: absolute;
+    bottom: -25px;
+}
+
+.controller .p1 {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    left: 55px;
+    bottom: 135px;
+}
+
+.controller .p2 {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    left: 130px;
+    bottom: 135px;
+}
+
+.controller .back {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    left: 130px;
+    bottom: 110px;
+    height: 20px;
+}
+
+.controller .enter {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    left: 55px;
+    bottom: 110px;
+    height: 20px;
+}
+
+.controller .right {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px solid;
+    left: 115px;
+    bottom: 120px;
+    height: 15px;
+
+}
+
+.controller .left {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px solid;
+    left: 82px;
+    bottom: 120px;
+    height: 15px;
+}
+
+.controller .down {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px solid;
+    left: 95px;
+    bottom: 110px;
+    height: 10px;
+    width: 20px;
+}
+
+.controller .up {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0px solid;
+    left: 95px;
+    bottom: 135px;
+    height: 15px;
+    width: 20px;
+}
+
+
+.popover-body {
+    background-color: white;
+}
+
+.hide {
+    display: none;
+}
