@@ -1,43 +1,60 @@
 class Radio {
     constructor(radioElement) {
-        this.status = RadioAction.status.OFF;
-        this.volume = 0;
         this.zones = [];
+        this.menus = {};
 
         this.current = {
             zone: this.zones.length > 0 ? this.zones[0] : null,
-            selectedZone: this.zones.length > 0 ? this.zones[0] : null,
-            cursorIndex: 1,
             channel: this.zones.length > 0 ? this.zones[0].channelList[0] : new RadioChannel(0, "Channel0", 0),
+            volume: 0,
+            status: RadioAction.status.OFF,
             theme: 'light',
             menu: RadioMenu.HOME,
         }
 
-        this.scanMode = false;
         this.radioModel = new RadioModel(radioElement, this);
+
+        for (let menu of Object.values(RadioMenu)) {
+            this.menus[menu] = RadioBaseMenu.build({
+                radioMenu: menu,
+                radioModel: this.radioModel,
+                radioData: this.current
+            })
+        }
     }
 
+    async trigger(radioAction) {
+        if (radioAction === RadioAction.button.VOLUME_UP || radioAction === RadioAction.button.VOLUME_DOWN)
+            this.turnVolume(radioAction);
+        else if (this.current.status === RadioAction.status.ON) {
+            this.radioModel.playButtonSound();
+            return this.menus[this.current.menu][radioAction]();
+        }
+    }
+
+    
     async turnVolume(radioActionVolume) {
-        if (radioActionVolume === RadioAction.volume.UP) {
-            if (this.status === RadioAction.status.OFF && this.volume === 0) {
+        if (radioActionVolume === RadioAction.button.VOLUME_UP) {
+            if (this.current.status === RadioAction.status.OFF && this.current.volume === 0) {
                 await this.radioModel.turn(RadioAction.status.ON);
-                this.changeMenu(RadioMenu.HOME)
-                this.status = RadioAction.status.ON;
+                this.menus[RadioMenu.HOME].show();
+                this.current.status = RadioAction.status.ON;
             }
 
-            this.volume = this.volume + 10 < 100 ? this.volume + 10 : 100;
+            this.current.volume = this.current.volume + 10 < 100 ? this.current.volume + 10 : 100;
         }
-        else if (radioActionVolume === RadioAction.volume.DOWN) {
-            if (this.status === RadioAction.status.ON && this.volume - 10 <= 0) {
+        else if (radioActionVolume === RadioAction.button.VOLUME_DOWN) {
+            if (this.current.status === RadioAction.status.ON && this.current.volume - 10 <= 0) {
                 this.radioModel.turn(RadioAction.status.OFF);
-                this.status = RadioAction.status.OFF;
-                this.changeMenu(RadioMenu.HOME);
+                this.menus[RadioMenu.HOME].show();
+                this.current.status = RadioAction.status.OFF;
             }
 
-            this.volume = this.volume - 10 >= 0 ? this.volume - 10 : 0;
+            this.current.volume = this.current.volume - 10 >= 0 ? this.current.volume - 10 : 0;
         }
     }
 
+    /*
     changeMenu(radioMenu) {
         this.radioModel.hideScreen(this.current.menu);
         this.radioModel.showScreen(radioMenu);
@@ -182,4 +199,5 @@ class Radio {
                 console.log(`Unknown button action: ${RadioActionButton}.`);
         }
     }
+    */
 }

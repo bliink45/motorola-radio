@@ -30,8 +30,6 @@ class RadioModel {
             "channel-number": radioData.current.channel.index,
             "channel-name": radioData.current.channel.name,
         })
-
-
     }
 
     async turn(radioActionStatus) {

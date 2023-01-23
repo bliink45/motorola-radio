@@ -22,13 +22,12 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("click", "#volume-up-btn", async () => {
-        radioUI.motorolaRadio.turnVolume(RadioAction.volume.UP);
+    
+    $(document).on("click", ".button",async (event) => {
+        return await radioUI.motorolaRadio.trigger(event.target.classList[1]);
     })
 
-    $(document).on("click", "#volume-down-btn", async () => {
-        radioUI.motorolaRadio.turnVolume(RadioAction.volume.DOWN);
-    })
+    /*
 
     $(document).on("click", "#channel-prev-btn", async () => {
         radioUI.motorolaRadio.getChannel("previous");
@@ -69,6 +68,8 @@ $(document).ready(function () {
     $(document).on("click", ".controller .right", async () => {
         radioUI.motorolaRadio.triggerAction(RadioAction.button.RIGHT);
     })
+
+    */
 
     $(document).keyup(function(e) {
         if (e.key === "Escape") {

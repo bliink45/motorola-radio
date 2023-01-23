@@ -24,8 +24,8 @@ $(document).ready(function () {
             await sleep(1);
             let popoverBody = $(`#${$(".controller .volume").attr('aria-describedby')}`).children(".popover-body")
             popoverBody.css("padding", "1");
-            popoverBody.append("<button id='volume-down-btn'>-</button>");
-            popoverBody.append("<button  id='volume-up-btn'>+</button>");
+            popoverBody.append('<button class="button volume-down">-</button>');
+            popoverBody.append('<button class="button volume-up">+</button>');
         }
     });
 
@@ -34,8 +34,8 @@ $(document).ready(function () {
             await sleep(1);
             let popoverBody = $(`#${$(".controller .channel").attr('aria-describedby')}`).children(".popover-body")
             popoverBody.css("padding", "1");
-            popoverBody.append("<button id='channel-prev-btn'>\<</button>");
-            popoverBody.append("<button id='channel-next-btn'>\></button>");
+            popoverBody.append('<button class="button channel-down">\<</button>');
+            popoverBody.append('<button class="button channel-up">\></button>');
         }
     });
 
@@ -45,6 +45,8 @@ $(document).ready(function () {
     $(".contact-actions").addClass("hide");
     $(".contacts").addClass("hide");
 
+    $(".home").addClass("hide");
+
     $(".screen").addClass("hide");
-    $("body").addClass("hide");
+    //$("body").addClass("hide");
 });
