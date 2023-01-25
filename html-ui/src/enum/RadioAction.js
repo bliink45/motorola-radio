@@ -12,9 +12,9 @@ const RadioAction = {
         CHANNEL_DOWN: "channel-down",
         ENTER: "enter",
         BACK: "back",
-        UP: "up",
-        DOWN: "down",
-        LEFT: "left",
-        RIGHT: "right"
+        ARROW_UP: "arrow-up",
+        ARROW_DOWN: "arrow-down",
+        ARROW_LEFT: "arrow-left",
+        ARROW_RIGHT: "arrow-right"
     }
 }

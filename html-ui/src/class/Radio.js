@@ -1,11 +1,10 @@
 class Radio {
     constructor(radioElement) {
-        this.zones = [];
         this.menus = {};
 
         this.current = {
-            zone: this.zones.length > 0 ? this.zones[0] : null,
-            channel: this.zones.length > 0 ? this.zones[0].channelList[0] : new RadioChannel(0, "Channel0", 0),
+            zone: null,
+            channel: new RadioChannel(0, "Channel0", 0),
             volume: 0,
             status: RadioAction.status.OFF,
             theme: 'light',

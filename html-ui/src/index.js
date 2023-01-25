@@ -27,50 +27,6 @@ $(document).ready(function () {
         return await radioUI.motorolaRadio.trigger(event.target.classList[1]);
     })
 
-    /*
-
-    $(document).on("click", "#channel-prev-btn", async () => {
-        radioUI.motorolaRadio.getChannel("previous");
-    })
-
-    $(document).on("click", "#channel-next-btn", async () => {
-        radioUI.motorolaRadio.getChannel("next");
-    })
-
-    $(document).on("click", ".controller .p1", async () => {
-        radioUI.motorolaRadio.triggerAction(RadioAction.button.ACTION_1);
-    })
-
-    $(document).on("click", ".controller .p2", async () => {
-        radioUI.motorolaRadio.triggerAction(RadioAction.button.ACTION_2);
-    })
-
-    $(document).on("click", ".controller .back", async () => {
-        radioUI.motorolaRadio.triggerAction(RadioAction.button.BACK);
-    })
-
-    $(document).on("click", ".controller .enter", async () => {
-        radioUI.motorolaRadio.triggerAction(RadioAction.button.ENTER);
-    })
-
-    $(document).on("click", ".controller .up", async () => {
-        radioUI.motorolaRadio.triggerAction(RadioAction.button.UP);
-    })
-
-    $(document).on("click", ".controller .left", async () => {
-        radioUI.motorolaRadio.triggerAction(RadioAction.button.LEFT);
-    })
-
-    $(document).on("click", ".controller .down", async () => {
-        radioUI.motorolaRadio.triggerAction(RadioAction.button.DOWN);
-    })
-
-    $(document).on("click", ".controller .right", async () => {
-        radioUI.motorolaRadio.triggerAction(RadioAction.button.RIGHT);
-    })
-
-    */
-
     $(document).keyup(function(e) {
         if (e.key === "Escape") {
             $.post('https://motorola-radio/radio-close', JSON.stringify({}));

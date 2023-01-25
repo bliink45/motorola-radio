@@ -214,7 +214,7 @@ body {
     height: 20px;
 }
 
-.controller .right {
+.controller .arrow-right {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
     border: 0px solid;
@@ -224,7 +224,7 @@ body {
 
 }
 
-.controller .left {
+.controller .arrow-left {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
     border: 0px solid;
@@ -233,7 +233,7 @@ body {
     height: 15px;
 }
 
-.controller .down {
+.controller .arrow-down {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
     border: 0px solid;
@@ -243,7 +243,7 @@ body {
     width: 20px;
 }
 
-.controller .up {
+.controller .arrow-up {
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
     border: 0px solid;

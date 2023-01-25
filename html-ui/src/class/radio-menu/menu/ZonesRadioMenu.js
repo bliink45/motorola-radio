@@ -1,5 +1,105 @@
 class ZonesRadioMenu extends RadioBaseMenu {
-    constructor(radioModel) {
+    constructor(radioModel, radioradioCurrentDataData) {
         super(radioModel, RadioMenu.ZONES);
+
+        this.zones = [];
+        this.radioradioCurrentDataData = radioradioCurrentDataData;
+
+        this.cursorIndex = 1;
+
+        this[RadioAction.button.ARROW_UP] = () => scroll(RadioAction.button.ARROW_UP);
+        this[RadioAction.button.ARROW_DOWN] = () => scroll(RadioAction.button.ARROW_DOWN);
+    }
+
+    scroll(radioAction) {
+        let cursorIndex_old = this.cursorIndex;
+        let [ zone1, zone2, zone3 ] = radioAction === RadioAction.button.ARROW_UP ? this.scrollUp() : this.scrollDown();
+
+        let enabledZoneIndex = this.radioModel.getEnabledZoneIndex(
+            this.radioCurrentData.zone.name,
+            [ zone1, zone2, zone3 ]
+        );
+
+        this.radioModel.setZonesData({
+            "zone-1": zone1,
+            "zone-2": zone2,
+            "zone-3": zone3,
+            "cursor-index": this.cursorIndex,
+            "cursor-index-old": cursorIndex_old,
+            "enabled-zone-index": enabledZoneIndex,
+        });
+    }
+
+    scrollUp() {
+        if (this.radioCurrentData.selectedZone.index - 1 >= 0) {
+            if (this.cursorIndex - 1 < 1) {
+                zone1 =
+                    this.zones[this.radioCurrentData.selectedZone.index - 1]
+                        .name;
+                zone2 =
+                    this.zones[this.radioCurrentData.selectedZone.index].name;
+                zone3 = this.zones[this.radioCurrentData.selectedZone.index + 1]
+                    ? this.zones[this.radioCurrentData.selectedZone.index + 1]
+                          .name
+                    : "";
+            } else this.cursorIndex--;
+
+            this.radioCurrentData.selectedZone =
+                this.zones[this.radioCurrentData.selectedZone.index - 1];
+        } else {
+            let zonesListLength = this.zones.length;
+
+            if (zonesListLength >= 3) {
+                zone1 = this.zones[zonesListLength - 3].name;
+                zone2 = this.zones[zonesListLength - 2].name;
+                zone3 = this.zones[zonesListLength - 1].name;
+                this.cursorIndex = 3;
+            } else if (zonesListLength === 2) {
+                zone1 = this.zones[zonesListLength - 2].name;
+                zone2 = this.zones[zonesListLength - 1].name;
+                zone3 = "";
+                this.cursorIndex = 2;
+            } else {
+                zone1 = this.zones[zonesListLength - 1].name;
+                zone2 = "";
+                zone3 = "";
+                this.cursorIndex = 1;
+            }
+
+            this.radioCurrentData.selectedZone =
+                this.zones[zonesListLength - 1];
+        }
+
+        return { zone1, zone2, zone3 };
+    }
+
+    scrollDown() {
+        let zonesListLength = this.zones.length;
+        if (this.radioCurrentData.selectedZone.index + 1 < zonesListLength) {
+            if (this.cursorIndex + 1 > 3) {
+                zone1 =
+                    this.zones[this.radioCurrentData.selectedZone.index - 1]
+                        .name;
+                zone2 =
+                    this.zones[this.radioCurrentData.selectedZone.index].name;
+                zone3 =
+                    this.zones[this.radioCurrentData.selectedZone.index + 1]
+                        .name;
+            } else {
+                this.cursorIndex++;
+            }
+
+            this.radioCurrentData.selectedZone =
+                this.zones[this.radioCurrentData.selectedZone.index + 1];
+        } else {
+            zone1 = this.zones[0] ? this.zones[0].name : "";
+            zone2 = this.zones[1] ? this.zones[1].name : "";
+            zone3 = this.zones[2] ? this.zones[2].name : "";
+            this.cursorIndex = 1;
+
+            this.radioCurrentData.selectedZone = this.zones[0];
+        }
+
+        return { zone1, zone2, zone3 };
     }
 }
