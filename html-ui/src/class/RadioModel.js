@@ -25,11 +25,6 @@ class RadioModel {
         this.soundBank.radio_tick.radio_tick = 0.3;
 
         this.setImage(this.imageBank.radio_off)
-
-        this.setChannelLabels({
-            "channel-number": radioData.current.channel.index,
-            "channel-name": radioData.current.channel.name,
-        })
     }
 
     async turn(radioActionStatus) {
@@ -137,10 +132,10 @@ class RadioModel {
         })
 
         this.setZonesData({
-            "zone-1": data.zones[0] ? data.zones[0].name : "",
-            "zone-2": data.zones[1] ? data.zones[1].name : "",
-            "zone-3": data.zones[2] ? data.zones[2].name: "",
-            "cursor-index": data.current.cursorIndex,
+            "zone-1": data.menus[RadioMenu.ZONES].zones[0] ? data.menus[RadioMenu.ZONES].zones[0].name : "",
+            "zone-2": data.menus[RadioMenu.ZONES].zones[1] ? data.menus[RadioMenu.ZONES].zones[1].name : "",
+            "zone-3": data.menus[RadioMenu.ZONES].zones[2] ? data.menus[RadioMenu.ZONES].zones[2].name : "",
+            "cursor-index": data.menus[RadioMenu.ZONES].cursorIndex,
             "enabled-zone-index": 1
         })
     }

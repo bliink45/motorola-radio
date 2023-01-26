@@ -4,7 +4,7 @@ class Radio {
 
         this.current = {
             zone: null,
-            channel: new RadioChannel(0, "Channel0", 0),
+            channel: null,
             volume: 0,
             status: RadioAction.status.OFF,
             theme: 'light',
@@ -20,6 +20,16 @@ class Radio {
                 radioData: this.current
             })
         }
+
+        console.log(this)
+    }
+
+    setData(zones) {
+        this.menus[RadioMenu.ZONES].zones = RadioZone.buildList(zones);
+        this.current.zone = this.menus[RadioMenu.ZONES].zones.length > 0 ? this.menus[RadioMenu.ZONES].zones[0] : null;
+        this.menus[RadioMenu.ZONES].selectedZone = this.current.zone
+        this.current.channel = this.current.zone ? this.current.zone.channelList[0] : new RadioChannel(0, "Channel0", 0);
+        this.radioModel.refresh(this);
     }
 
     async trigger(radioAction) {

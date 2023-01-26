@@ -48,5 +48,5 @@ $(document).ready(function () {
     $(".home").addClass("hide");
 
     $(".screen").addClass("hide");
-    //$("body").addClass("hide");
+    $("body").addClass("hide");
 });

@@ -19,6 +19,8 @@ files {
    'html-ui/assets/images/*.png',
    'html-ui/assets/sounds/*.mp3',
    'html-ui/src/class/*.js',
+   'html-ui/src/class/radio-menu/*.js',
+   'html-ui/src/class/radio-menu/menu/*.js',
    'html-ui/src/config/*.js',
    'html-ui/src/enum/*.js',
    'html-ui/src/utils/*.js',

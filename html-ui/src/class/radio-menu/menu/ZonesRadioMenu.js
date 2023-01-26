@@ -1,19 +1,20 @@
 class ZonesRadioMenu extends RadioBaseMenu {
-    constructor(radioModel, radioradioCurrentDataData) {
+    constructor(radioModel, radioCurrentData) {
         super(radioModel, RadioMenu.ZONES);
 
         this.zones = [];
-        this.radioradioCurrentDataData = radioradioCurrentDataData;
+        this.radioCurrentData = radioCurrentData;
 
+        this.selectedZone = null;
         this.cursorIndex = 1;
 
-        this[RadioAction.button.ARROW_UP] = () => scroll(RadioAction.button.ARROW_UP);
-        this[RadioAction.button.ARROW_DOWN] = () => scroll(RadioAction.button.ARROW_DOWN);
+        this[RadioAction.button.ARROW_UP] = () => this.scroll(RadioAction.button.ARROW_UP);
+        this[RadioAction.button.ARROW_DOWN] = () => this.scroll(RadioAction.button.ARROW_DOWN);
     }
 
     scroll(radioAction) {
         let cursorIndex_old = this.cursorIndex;
-        let [ zone1, zone2, zone3 ] = radioAction === RadioAction.button.ARROW_UP ? this.scrollUp() : this.scrollDown();
+        let { zone1, zone2, zone3 } = (radioAction === RadioAction.button.ARROW_UP) ? this.scrollUp() : this.scrollDown();
 
         let enabledZoneIndex = this.radioModel.getEnabledZoneIndex(
             this.radioCurrentData.zone.name,
@@ -31,21 +32,23 @@ class ZonesRadioMenu extends RadioBaseMenu {
     }
 
     scrollUp() {
-        if (this.radioCurrentData.selectedZone.index - 1 >= 0) {
+        let zone1, zone2, zone3;
+
+        if (this.selectedZone.index - 1 >= 0) {
             if (this.cursorIndex - 1 < 1) {
                 zone1 =
-                    this.zones[this.radioCurrentData.selectedZone.index - 1]
+                    this.zones[this.selectedZone.index - 1]
                         .name;
                 zone2 =
-                    this.zones[this.radioCurrentData.selectedZone.index].name;
-                zone3 = this.zones[this.radioCurrentData.selectedZone.index + 1]
-                    ? this.zones[this.radioCurrentData.selectedZone.index + 1]
+                    this.zones[this.selectedZone.index].name;
+                zone3 = this.zones[this.selectedZone.index + 1]
+                    ? this.zones[this.selectedZone.index + 1]
                           .name
                     : "";
             } else this.cursorIndex--;
 
-            this.radioCurrentData.selectedZone =
-                this.zones[this.radioCurrentData.selectedZone.index - 1];
+            this.selectedZone =
+                this.zones[this.selectedZone.index - 1];
         } else {
             let zonesListLength = this.zones.length;
 
@@ -66,38 +69,44 @@ class ZonesRadioMenu extends RadioBaseMenu {
                 this.cursorIndex = 1;
             }
 
-            this.radioCurrentData.selectedZone =
+            this.selectedZone =
                 this.zones[zonesListLength - 1];
         }
 
-        return { zone1, zone2, zone3 };
+        return {
+            zone1: zone1,
+            zone2: zone2,
+            zone3: zone3
+        };
     }
 
     scrollDown() {
+        let zone1, zone2, zone3;
         let zonesListLength = this.zones.length;
-        if (this.radioCurrentData.selectedZone.index + 1 < zonesListLength) {
+
+        if (this.selectedZone.index + 1 < zonesListLength) {
             if (this.cursorIndex + 1 > 3) {
                 zone1 =
-                    this.zones[this.radioCurrentData.selectedZone.index - 1]
+                    this.zones[this.selectedZone.index - 1]
                         .name;
                 zone2 =
-                    this.zones[this.radioCurrentData.selectedZone.index].name;
+                    this.zones[this.selectedZone.index].name;
                 zone3 =
-                    this.zones[this.radioCurrentData.selectedZone.index + 1]
+                    this.zones[this.selectedZone.index + 1]
                         .name;
             } else {
                 this.cursorIndex++;
             }
 
-            this.radioCurrentData.selectedZone =
-                this.zones[this.radioCurrentData.selectedZone.index + 1];
+            this.selectedZone =
+                this.zones[this.selectedZone.index + 1];
         } else {
             zone1 = this.zones[0] ? this.zones[0].name : "";
             zone2 = this.zones[1] ? this.zones[1].name : "";
             zone3 = this.zones[2] ? this.zones[2].name : "";
             this.cursorIndex = 1;
 
-            this.radioCurrentData.selectedZone = this.zones[0];
+            this.selectedZone = this.zones[0];
         }
 
         return { zone1, zone2, zone3 };
