@@ -118,7 +118,7 @@ class ZonesRadioMenu extends RadioBaseMenu {
         let currentZoneOldIndex = this.radioModel.getEnabledZoneIndex(this.radioCurrentData.zone.name);
         this.radioCurrentData.zone = this.selectedZone;
         this.radioCurrentData.channel = this.radioCurrentData.zone.channelList[0];
-        this.radioModel.enableSelectedZone(this.radioCurrentData.zone.name, this.radioCurrentData.cursorIndex, currentZoneOldIndex);
+        this.radioModel.enableSelectedZone(this.radioCurrentData.zone.name, this.cursorIndex, currentZoneOldIndex);
 
         this.radioModel.setChannelLabels({
             "channel-number": this.radioCurrentData.channel.index,
@@ -129,5 +129,6 @@ class ZonesRadioMenu extends RadioBaseMenu {
     goBackHome() {
         this.hide();
         this.radioModel.showScreen(RadioMenu.HOME);
+        this.radioCurrentData.menu = RadioMenu.HOME;
     }
 }

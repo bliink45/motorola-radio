@@ -11,7 +11,7 @@ class RadioBaseMenu {
         const classBuilder = {}
         classBuilder[RadioMenu.HOME] = HomeRadioMenu;
         classBuilder[RadioMenu.ZONES] = ZonesRadioMenu;
-        classBuilder[RadioMenu.CONTACTS] = ContactsRadioMenu;
+        classBuilder[RadioMenu.CREATE] = CreateRadioMenu;
 
         return new classBuilder[buildData.radioMenu](buildData.radioModel, buildData.radioData);
     }

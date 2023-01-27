@@ -36,7 +36,8 @@ class Radio {
         if (radioAction === RadioAction.button.VOLUME_UP || radioAction === RadioAction.button.VOLUME_DOWN)
             this.turnVolume(radioAction);
         else if (this.current.status === RadioAction.status.ON) {
-            this.radioModel.playButtonSound();
+            if (radioAction !== RadioAction.button.CHANNEL_UP && radioAction !== RadioAction.button.CHANNEL_DOWN)
+                this.radioModel.playButtonSound();
             return this.menus[this.current.menu][radioAction]();
         }
     }
