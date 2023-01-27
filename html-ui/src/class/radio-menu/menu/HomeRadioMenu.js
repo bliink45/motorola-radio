@@ -35,8 +35,8 @@ class HomeRadioMenu extends RadioBaseMenu {
 
     refresh() {
         this.radioModel.setChannelLabels({
-            "channel-number": this.channel.index,
-            "channel-name": this.channel.name,
+            "channel-number": this.radioCurrentData.channel.index,
+            "channel-name": this.radioCurrentData.channel.name,
         });
     }
 }

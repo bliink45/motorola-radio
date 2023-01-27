@@ -83,17 +83,15 @@ class RadioModel {
     }
 
     getEnabledZoneIndex(currentZoneName, zoneList = []) {
-        let enabledZoneIndex;
-
         for (let i = 0; i < 3; i++) {
             if (zoneList[i] == null)
                 zoneList[i] = $(".zone-" + (i + 1)).text();
 
             if (zoneList[i] === currentZoneName)
-                return enabledZoneIndex = i + 1;
+                return i + 1;
         }
 
-        return
+        return null;
     }
     
     setZonesData(zoneData) {
