@@ -5,6 +5,8 @@ $(document).ready(function () {
     }
 
     window.addEventListener('message', function(event) {
+        console.log("event: " + event.data.type)
+
         if (event.data.type === "toggle-radio") {
             if (radioUI.isOpen) {
                 $("body").addClass("hide");

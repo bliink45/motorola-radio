@@ -15,6 +15,10 @@ class HomeRadioMenu extends RadioBaseMenu {
                 this.radioCurrentData.channel.index
             );
 
+            $.post('https://motorola-radio/radio-set-frequency', JSON.stringify({
+                frequency: this.radioCurrentData.channel.frequency,
+            }));
+
             this.refresh();
         };
 
@@ -22,6 +26,10 @@ class HomeRadioMenu extends RadioBaseMenu {
             this.radioCurrentData.channel = this.radioCurrentData.zone.getPrevChannel(
                 this.radioCurrentData.channel.index
             );
+
+            $.post('https://motorola-radio/radio-set-frequency', JSON.stringify({
+                frequency: this.radioCurrentData.channel.frequency,
+            }));
 
             this.refresh();
         };

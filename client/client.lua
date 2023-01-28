@@ -1,4 +1,4 @@
-Motorola.Radio = Radio:new();
+Motorola.Radio = Radio.new();
 
 RegisterNUICallback('radio-close', function(data, cb)
     Motorola.Radio.toggleRadio(false)
@@ -24,11 +24,8 @@ if Motorola.Config.Keybind ~= '' then
     RegisterKeyMapping('radio-open', 'Ouvrir la radio', 'keyboard', Motorola.Config.Keybind)
 end
 
-AddEventHandler('onClientResourceStart', function(resourceName)
-    if (GetCurrentResourceName() == resourceName) then
-        Motorola.Radio.init(Motorola.Config.Zones)
-        exports['nse_voice']:setRadioChannel(0)
-        exports['nse_voice']:setVoiceProperty('radioEnabled', false)
-        print(GetCurrentResourceName() .. " initialized.")
-    end
+Citizen.CreateThread(function()
+    Citizen.Wait(500)
+    Motorola.Radio.init(Motorola.Config.Zones)
+    print(GetCurrentResourceName() .. " initialized.")
 end)

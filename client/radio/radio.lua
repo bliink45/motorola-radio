@@ -1,4 +1,6 @@
-function Radio:new() {
+Radio = {}
+
+Radio.new = function()
     newRadio = {}
     
     newRadio.current = {
@@ -7,14 +9,17 @@ function Radio:new() {
         status = RadioAction.status.OFF,
     }
 
-    function newRadio.init(zones) {
+    function newRadio.init(zones)
         SendNUIMessage({
-            type = 'init-radio'
+            type = 'init-radio',
             zones = zones
         })
-    }
 
-    function newRadio.turn(radioAction) {
+        exports['nse_voice']:setRadioChannel(0)
+        exports['nse_voice']:setVoiceProperty('radioEnabled', false)
+    end
+
+    function newRadio.turn(radioAction)
         newRadio.current.status = radioAction
 
         if (radioAction == RadioAction.OFF) then
@@ -22,7 +27,7 @@ function Radio:new() {
         end
         
         exports['nse_voice']:setVoiceProperty('radioEnabled', radioAction == RadioAction.ON)
-    }
+    end
 
     function newRadio.toggleRadio(enable)
         SetNuiFocus(enable, enable)
@@ -31,12 +36,14 @@ function Radio:new() {
         })
     end
 
-    function newRadio.setFrequency(frequency) {
+    function newRadio.setFrequency(frequency)
         newRadio.current.frequency = frequency
-        exports['nse_voice']:setRadioChannel(channel)
-    }
+        exports['nse_voice']:setRadioChannel(frequency)
+    end
 
-    function newRadio.setVolume(volume) {
+    function newRadio.setVolume(volume)
         newRadio.current.volume = volume
-    }
-}
+    end
+
+    return newRadio
+end

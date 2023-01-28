@@ -7,11 +7,8 @@ dependencies {
 	'/onesync',
 }
 
-shared_scripts {
-   'shared/*.lua',
-}
-
 client_scripts {
+   'shared/*.lua',
    'client/radio/enum/*.lua',
 	'client/radio/*.lua',
    'client/*.lua'

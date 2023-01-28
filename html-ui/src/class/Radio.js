@@ -47,6 +47,8 @@ class Radio {
                 await this.radioModel.turn(RadioAction.status.ON);
                 this.menus[RadioMenu.HOME].show();
                 this.current.status = RadioAction.status.ON;
+
+                this.radioModel.refresh(this);
                 $.post('https://motorola-radio/radio-on', JSON.stringify({}));
             }
 
@@ -58,7 +60,7 @@ class Radio {
                 this.menus[RadioMenu.HOME].show();
                 this.current.status = RadioAction.status.OFF;
                 this.current.zone = this.menus[RadioMenu.ZONES].zones[0];
-                this.current.channel = this.current.channel = this.menus[RadioMenu.ZONES].zones.channelList[0];
+                this.current.channel = this.current.zone.channelList[0];
 
                 $.post('https://motorola-radio/radio-off', JSON.stringify({}));
             }
