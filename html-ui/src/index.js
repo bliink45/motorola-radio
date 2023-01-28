@@ -14,8 +14,6 @@ $(document).ready(function () {
                 $("body").removeClass("hide");
                 radioUI.isOpen = true;
             }
-            
-            radioUI.motorolaRadio.setData(event.data.zones)
         }
         else if (event.data.type === "init-radio") {
             radioUI.motorolaRadio.setData(event.data.zones);

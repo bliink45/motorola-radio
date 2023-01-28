@@ -124,6 +124,10 @@ class ZonesRadioMenu extends RadioBaseMenu {
             "channel-number": this.radioCurrentData.channel.index,
             "channel-name": this.radioCurrentData.channel.name,
         });
+
+        $.post('https://motorola-radio/radio-set-frequency', JSON.stringify({
+            frequency: this.radioCurrentData.channel.frequency,
+        }));
     }
 
     goBackHome() {

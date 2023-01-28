@@ -4,6 +4,15 @@ Motorola.Config = {
     Keybind = 'K',
     Zones = {
         {
+            name = "Accueil"
+            channelList = {
+                {
+                    frequency = 0,
+                    name = "Accueil"
+                }
+            }
+        },
+        {
             name = "LSPD",
             channelList = {
                 {

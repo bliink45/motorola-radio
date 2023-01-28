@@ -20,8 +20,6 @@ class Radio {
                 radioData: this.current
             })
         }
-
-        console.log(this)
     }
 
     setData(zones) {
@@ -49,6 +47,7 @@ class Radio {
                 await this.radioModel.turn(RadioAction.status.ON);
                 this.menus[RadioMenu.HOME].show();
                 this.current.status = RadioAction.status.ON;
+                $.post('https://motorola-radio/radio-on', JSON.stringify({}));
             }
 
             this.current.volume = this.current.volume + 10 < 100 ? this.current.volume + 10 : 100;
@@ -58,6 +57,10 @@ class Radio {
                 this.radioModel.turn(RadioAction.status.OFF);
                 this.menus[RadioMenu.HOME].show();
                 this.current.status = RadioAction.status.OFF;
+                this.current.zone = this.menus[RadioMenu.ZONES].zones[0];
+                this.current.channel = this.current.channel = this.menus[RadioMenu.ZONES].zones.channelList[0];
+
+                $.post('https://motorola-radio/radio-off', JSON.stringify({}));
             }
 
             this.current.volume = this.current.volume - 10 >= 0 ? this.current.volume - 10 : 0;
