@@ -10,6 +10,8 @@ class ZonesRadioMenu extends RadioBaseMenu {
 
         this[RadioAction.button.ARROW_UP] = () => this.scroll(RadioAction.button.ARROW_UP);
         this[RadioAction.button.ARROW_DOWN] = () => this.scroll(RadioAction.button.ARROW_DOWN);
+        this[RadioAction.button.ENTER] = () => this.enableZone();
+        this[RadioAction.button.BACK] = () => this.goBackHome();
     }
 
     scroll(radioAction) {
@@ -110,5 +112,27 @@ class ZonesRadioMenu extends RadioBaseMenu {
         }
 
         return { zone1, zone2, zone3 };
+    }
+
+    enableZone() {
+        let currentZoneOldIndex = this.radioModel.getEnabledZoneIndex(this.radioCurrentData.zone.name);
+        this.radioCurrentData.zone = this.selectedZone;
+        this.radioCurrentData.channel = this.radioCurrentData.zone.channelList[0];
+        this.radioModel.enableSelectedZone(this.radioCurrentData.zone.name, this.cursorIndex, currentZoneOldIndex);
+
+        this.radioModel.setChannelLabels({
+            "channel-number": this.radioCurrentData.channel.index,
+            "channel-name": this.radioCurrentData.channel.name,
+        });
+
+        $.post('https://motorola-radio/radio-set-frequency', JSON.stringify({
+            frequency: this.radioCurrentData.channel.frequency,
+        }));
+    }
+
+    goBackHome() {
+        this.hide();
+        this.radioModel.showScreen(RadioMenu.HOME);
+        this.radioCurrentData.menu = RadioMenu.HOME;
     }
 }

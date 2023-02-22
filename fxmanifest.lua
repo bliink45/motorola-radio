@@ -7,10 +7,11 @@ dependencies {
 	'/onesync',
 }
 
-shared_script 'config.lua'
-
 client_scripts {
-	'client.lua'
+   'shared/*.lua',
+   'client/radio/enum/*.lua',
+	'client/radio/*.lua',
+   'client/*.lua'
 }
 
 ui_page 'html-ui/index.html'

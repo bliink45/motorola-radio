@@ -10,24 +10,26 @@ class HomeRadioMenu extends RadioBaseMenu {
             this.radioCurrentData.menu = RadioMenu.ZONES;
         };
 
-        this[RadioAction.button.P2] = () => {
-            this.hide()
-            this.radioModel.showScreen(RadioMenu.CONTACTS);
-            this.radioCurrentData.menu = RadioMenu.CONTACTS;
-        };
-
         this[RadioAction.button.CHANNEL_UP] = () => {
-            this.channel = this.zone.getNextChannel(
-                this.channel.index
+            this.radioCurrentData.channel = this.radioCurrentData.zone.getNextChannel(
+                this.radioCurrentData.channel.index
             );
+
+            $.post('https://motorola-radio/radio-set-frequency', JSON.stringify({
+                frequency: this.radioCurrentData.channel.frequency,
+            }));
 
             this.refresh();
         };
 
         this[RadioAction.button.CHANNEL_DOWN] = () => {
-            this.channel = this.zone.getPrevChannel(
-                this.current.channel.index
+            this.radioCurrentData.channel = this.radioCurrentData.zone.getPrevChannel(
+                this.radioCurrentData.channel.index
             );
+
+            $.post('https://motorola-radio/radio-set-frequency', JSON.stringify({
+                frequency: this.radioCurrentData.channel.frequency,
+            }));
 
             this.refresh();
         };
@@ -35,8 +37,8 @@ class HomeRadioMenu extends RadioBaseMenu {
 
     refresh() {
         this.radioModel.setChannelLabels({
-            "channel-number": this.channel.index,
-            "channel-name": this.channel.name,
+            "channel-number": this.radioCurrentData.channel.index,
+            "channel-name": this.radioCurrentData.channel.name,
         });
     }
 }

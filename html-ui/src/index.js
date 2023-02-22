@@ -5,6 +5,8 @@ $(document).ready(function () {
     }
 
     window.addEventListener('message', function(event) {
+        console.log("event: " + event.data.type)
+
         if (event.data.type === "toggle-radio") {
             if (radioUI.isOpen) {
                 $("body").addClass("hide");
@@ -14,8 +16,6 @@ $(document).ready(function () {
                 $("body").removeClass("hide");
                 radioUI.isOpen = true;
             }
-            
-            radioUI.motorolaRadio.setData(event.data.zones)
         }
         else if (event.data.type === "init-radio") {
             radioUI.motorolaRadio.setData(event.data.zones);

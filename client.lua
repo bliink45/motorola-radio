@@ -32,8 +32,7 @@ AddEventHandler('onResourceStart', function(resourceName)
       return
     end
 
-    print(resourceName .. " initialized.")
-end)
+
 
 Citizen.CreateThread(function()
     while true do
