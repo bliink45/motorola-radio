@@ -4,11 +4,15 @@ Motorola.Radio = {
 
 function Motorola.Radio.ToggleRadio(enable)
     Motorola.Radio.isOpen = enable
-    SetNuiFocus(enable, enable)
     SendNUIMessage({
         type = 'toggle-radio',
         zones = Motorola.Config.Zones
     })
+    isOpen = enable
+
+    if (not enable) then
+        SetNuiFocus(false, false)
+    end
 end
 
 RegisterNUICallback('radio-close', function(data, cb)
@@ -29,4 +33,19 @@ AddEventHandler('onResourceStart', function(resourceName)
     end
 
     print(resourceName .. " initialized.")
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        if isOpen then
+            -- SHIFT + ARRAY_UP
+            if IsControlPressed(0,  155) and IsControlPressed(0,  300) then    
+                SetNuiFocus(true, true)
+                Citizen.Wait(1000)
+            elseif IsPauseMenuActive() then
+                Motorola.Radio.ToggleRadio(false)
+            end
+        end
+        Citizen.Wait(50)
+    end
 end)
