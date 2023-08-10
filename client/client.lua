@@ -13,7 +13,33 @@ RegisterNUICallback('radio-off', function(data, cb)
 end)
 
 RegisterNUICallback('radio-set-frequency', function(data, cb)
+    TriggerServerEvent("motorola-radio:removePlayerByFrequency", Motorola.Radio.current.frequency)
     Motorola.Radio.setFrequency(data.frequency)
+    TriggerServerEvent("motorola-radio:registerPlayerByFrequency", data.frequency)
+end)
+
+function printPlayerList(playerList)
+    print("PlayerList:")
+    print("-------------")
+    for frequency, list in pairs(playerList) do
+        print("frequency: "..frequency)
+        for index, player in pairs(list) do
+            print("player "..index.." -> name: "..player.name..", guid: "..player.guid)
+        end
+        print("--")
+    end
+end
+
+RegisterNetEvent('motorola-radio:getPlayerList')
+AddEventHandler('motorola-radio:getPlayerList', function(playerList)
+    printPlayerList(playerList)
+
+    if Motorola.Radio.current.frequency ~= 0 then
+        SendNUIMessage({
+            type = 'update-player-list',
+            playerList = playerList[Motorola.Radio.current.frequency]
+        })
+    end
 end)
 
 if Motorola.Config.Keybind ~= '' then

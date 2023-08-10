@@ -24,6 +24,9 @@ Radio.new = function()
 
         if (radioAction == RadioAction.OFF) then
             exports['nse_voice']:setRadioChannel(0)
+            SendNUIMessage({
+                type = 'clear-player-list',
+            })
         end
         
         exports['nse_voice']:setVoiceProperty('radioEnabled', radioAction == RadioAction.ON)

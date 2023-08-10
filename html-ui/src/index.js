@@ -20,6 +20,21 @@ $(document).ready(function () {
         else if (event.data.type === "init-radio") {
             radioUI.motorolaRadio.setData(event.data.zones);
         }
+        else if (event.data.type === "update-player-list") {
+            const dropdownContentDiv = document.querySelector('.dropdown-content');
+            dropdownContentDiv.innerHTML = ''; 
+            
+            event.data.playerList.forEach(player => {
+                const playerElement = document.createElement('div');
+                playerElement.classList.add('player-list-item'); // You can style this class in your CSS
+                playerElement.innerHTML = `<a href="#">${player.name}</a>`;
+                dropdownContentDiv.appendChild(playerElement);
+            });
+        }
+        else if (event.data.type === "clear-player-list") {
+            const dropdownContentDiv = document.querySelector('.dropdown-content');
+            dropdownContentDiv.innerHTML = ''; 
+        }
     });
 
     

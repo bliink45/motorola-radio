@@ -14,6 +14,10 @@ client_scripts {
    'client/*.lua'
 }
 
+server_scripts {
+   "server/playerList/*.lua",
+}
+
 ui_page 'html-ui/index.html'
 
 files {
