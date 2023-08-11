@@ -45,6 +45,13 @@ $(document).ready(function () {
     $(document).keyup(function(e) {
         if (e.key === "Escape") {
             $.post('https://motorola-radio/radio-close', JSON.stringify({}));
-        };
+        } else if (e.key === "l") {
+            console.log(document.querySelector('.dropdown-content').classList.contains("hide"))
+            if (document.querySelector('.dropdown-content').classList.contains("hide")) {
+                document.querySelector('.dropdown-content').classList.remove("hide")
+            } else {
+                document.querySelector('.dropdown-content').classList.add("hide")
+            }
+        }
    });
 });

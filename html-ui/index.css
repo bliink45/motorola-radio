@@ -2,17 +2,8 @@ body {
     background-color: rgba(0, 0, 0, 0);
     position: absolute;
     bottom: 300px;
-    right: 100px;
+    right: 300px;
 }
-
-.dropbtn {
-    background-color: #000000;
-    color: white;
-    padding: 16px;
-    border: none;
-    width: 5px;
-    height: auto;
-  }
   
   .dropdown {
     position: absolute;
@@ -22,7 +13,7 @@ body {
   }
   
   .dropdown-content {
-    display: none;
+    display: block;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
@@ -36,12 +27,6 @@ body {
     text-decoration: none;
     display: block;
   }
-  
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  .dropdown:hover .dropbtn {background-color: #000000;}
 
 .radio {
     max-width: 200px;

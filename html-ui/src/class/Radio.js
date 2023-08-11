@@ -57,7 +57,9 @@ class Radio {
         else if (radioActionVolume === RadioAction.button.VOLUME_DOWN) {
             if (this.current.status === RadioAction.status.ON && this.current.volume - 10 <= 0) {
                 this.radioModel.turn(RadioAction.status.OFF);
+                this.menus[this.current.menu].hide();
                 this.menus[RadioMenu.HOME].show();
+                this.current.menu = RadioMenu.HOME;
                 this.current.status = RadioAction.status.OFF;
                 this.current.zone = this.menus[RadioMenu.ZONES].zones[0];
                 this.current.channel = this.current.zone.channelList[0];

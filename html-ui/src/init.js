@@ -48,5 +48,6 @@ $(document).ready(function () {
     $(".home").addClass("hide");
 
     $(".screen").addClass("hide");
+    $(".dropdown-content").addClass("hide");
     $("body").addClass("hide");
 });
